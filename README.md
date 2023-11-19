@@ -54,7 +54,7 @@ This is a simple calculator application that performs binary, floating-point, an
    ```bash
    ./Calculator
    ```
-2. If CMake fails, use the terminal:
+## If CMake fails, use the terminal:
   ```bash
   g++ .\src\main.cpp .\src\menu.cpp .\include\mathEngine.h .\include\menu.h
   ```
