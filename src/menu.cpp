@@ -14,10 +14,14 @@
 #include "../include/mathEngine.h"
 #include <iostream>
 #include <string>
+#include <memory>
 
 using namespace std;
 
 void Menu::startMenu() {
+    //Create a unique pointer to MathEngine as it is only used in menu class
+    unique_ptr<MathEngine> mathEngine = make_unique<MathEngine>();
+    
     //Menu logic
     int choice;
 
@@ -34,26 +38,26 @@ void Menu::startMenu() {
             case 1:
                 {   
                     //Binary calculations using MathEngine
-                    auto result = MathEngine().calculationOptions<string>("Binary");
+                    auto result = mathEngine->calculationOptions<string>("Binary");
 
-                    int decimalConversionOne = MathEngine().binaryToDecimal(get<0>(result));
-                    int decimalConversionTwo = MathEngine().binaryToDecimal(get<1>(result));
+                    int decimalConversionOne = mathEngine->binaryToDecimal(get<0>(result));
+                    int decimalConversionTwo = mathEngine->binaryToDecimal(get<1>(result));
 
                     if (get<2>(result) == '+') {
                         //Perform addition
                         int sum = decimalConversionOne + decimalConversionTwo;
-                        cout << MathEngine().decimalToBinary(sum) << endl;
+                        cout << mathEngine->decimalToBinary(sum) << endl;
                         
                     } else if (get<2>(result) == '-') {
                         //Perform subtraction
                         int diff = decimalConversionOne - decimalConversionTwo;
-                        cout << MathEngine().decimalToBinary(diff) << endl;
+                        cout << mathEngine->decimalToBinary(diff) << endl;
 
                     } else if (get<2>(result) == '/') {
                         //Perform division and checks for 0 division error
                         if (get<1>(result) != "0") {
                             int quotient = decimalConversionOne / decimalConversionTwo;
-                            cout << MathEngine().decimalToBinary(quotient) << endl;
+                            cout << mathEngine->decimalToBinary(quotient) << endl;
 
                         } else {  
                             //Error catch for division by 0
@@ -63,7 +67,7 @@ void Menu::startMenu() {
                     } else if (get<2>(result) == '*') {
                         //Perform multiplication
                         int product = decimalConversionOne * decimalConversionTwo;
-                        cout << MathEngine().decimalToBinary(product) << endl;
+                        cout << mathEngine->decimalToBinary(product) << endl;
                     } else {
                         throw invalid_argument("Unsupported Operation");
                     }
@@ -72,18 +76,18 @@ void Menu::startMenu() {
             case 2:
                 {
                     //Floating point calculations
-                    auto result = MathEngine().calculationOptions<double>("floating point");
+                    auto result = mathEngine->calculationOptions<double>("floating point");
 
 
-                    cout << MathEngine().floatOrInt(get<0>(result), get<1>(result), get<2>(result)) << endl;
+                    cout << mathEngine->floatOrInt(get<0>(result), get<1>(result), get<2>(result)) << endl;
                     break;
                 }
             case 3:
                 {
                     //Integer calculations
-                    auto result = MathEngine().calculationOptions<int>("integer");
+                    auto result = mathEngine->calculationOptions<int>("integer");
 
-                    cout << MathEngine().floatOrInt(get<0>(result), get<1>(result), get<2>(result)) << endl;
+                    cout << mathEngine->floatOrInt(get<0>(result), get<1>(result), get<2>(result)) << endl;
                     
                     break;
                 }
