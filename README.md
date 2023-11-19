@@ -29,7 +29,7 @@ This is a simple calculator application that performs binary, floating-point, an
 - CMake
 
 ## Build Instructions
-1. Clone the repository:
+1. CMake:
    ```bash
    git clone https://github.com/your-username/calculator-app.git
    ```
@@ -45,12 +45,22 @@ This is a simple calculator application that performs binary, floating-point, an
    ```bash
    cmake..
    ```
+   ```bash
+   make .
+   ```
 
    ## Usage
    Run the built executable from the command line:
    ```bash
    ./Calculator
    ```
+2. If CMake fails, use the terminal:
+  ```bash
+  g++ .\src\main.cpp .\src\menu.cpp .\include\mathEngine.h .\include\menu.h
+  ```
+  ```bash
+  .\a.exe
+  ```
 
 ## Test Cases
 
