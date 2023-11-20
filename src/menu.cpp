@@ -15,6 +15,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <limits>
 
 using namespace std;
 
@@ -98,6 +99,11 @@ void Menu::startMenu() {
             default:
                 //Catch all for menu options
                 cout << "Invalid Choice, try again." << endl;
+
+                //Clear buffer so I don't get the infinite loop again :)
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                break;
         }
 
     } while (choice != 4);
