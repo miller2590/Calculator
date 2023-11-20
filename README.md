@@ -46,7 +46,7 @@ This is a simple calculator application that performs binary, floating-point, an
    cmake..
    ```
    ```bash
-   make .
+   make 
    ```
 
    ## Usage
